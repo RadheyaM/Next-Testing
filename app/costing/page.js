@@ -1,8 +1,8 @@
-import {promises as fs} from 'fs';
+import getCustomers from '@/lib/dev-data';
 import Link from 'next/link';
 
 const CostingHome = async () => {
-  const file = await fs.readFile(process.cwd() + '/data/customers.json', 'utf-8');
+  const file = await getCustomers();
   const data = JSON.parse(file);
   // console.log("your data: ")
   // console.log(data)
