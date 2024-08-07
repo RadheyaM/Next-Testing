@@ -1,8 +1,8 @@
-import getCustomers from '@/lib/dev-data';
+import getData from '@/lib/dev-data';
 import Link from 'next/link';
 
 const CostingHome = async () => {
-  const file = await getCustomers();
+  const file = await getData('customers');
   const data = JSON.parse(file);
   // console.log("your data: ")
   // console.log(data)
