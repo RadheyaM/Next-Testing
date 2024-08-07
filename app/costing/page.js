@@ -11,7 +11,11 @@ const CostingHome = async () => {
       <h1>Costing Home</h1>
       <ul className='center'>
         {data.map((customer) => {
-          return <li key={customer.code}>{customer.name}</li>
+          return (
+            <li key={customer.code}>
+              <Link href={`/costing/${customer.code}`}>{customer.name}</Link>
+            </li>
+          )
         })}
       </ul>
     </>
