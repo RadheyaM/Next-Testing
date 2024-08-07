@@ -17,10 +17,10 @@ const rows = [
     createData(2, 'Vanilla Frosting', 0.110, 0.05, 0.116, 1.48, 0.171),
 ]
 
-const ComponentTable = (rowAlign) => {
+const ComponentTable = () => {
     return (
-        <TableContainer component={Paper} className='p-5'>
-            <Table sx={{ minWidth: 650}} size="small" aria-label="a dense table">
+        <TableContainer className='p-5'>
+            <Table size="small" aria-label="a dense table">
                 <TableHead>
                     <TableRow>
                         <TableCell><strong>Component</strong></TableCell>
