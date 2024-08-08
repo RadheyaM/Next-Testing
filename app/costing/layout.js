@@ -8,7 +8,7 @@ export default function CostingLayout({ children }) {
                     <Link href={'/costing'} className="text-xl text-blue-600">CUSTOMERS</Link>
                 </div>
             </header>
-            <main className="p-5">{children}</main>
+            <main className="p-5 m-5">{children}</main>
         </>
     )
 }

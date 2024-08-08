@@ -19,8 +19,8 @@ const rows = [
 
 const ComponentTable = () => {
     return (
-        <TableContainer className='p-5'>
-            <Table size="small" aria-label="a dense table">
+        <TableContainer component={Paper} elevation={3} className='p-5 m-5'>
+            <Table size="medium" aria-label="a dense table">
                 <TableHead>
                     <TableRow>
                         <TableCell><strong>Component</strong></TableCell>

@@ -5,6 +5,12 @@ const costingSchema = new Schema(
         name: String,
         description: String,
         date: Date,
+        overview: Map,
+        ingredients: Map,
+        packaging: Map,
+        labour: Map,
+        Distribuition: Map,
+        
     },
     {
         timestamps: true,
