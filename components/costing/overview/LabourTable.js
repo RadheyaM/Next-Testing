@@ -36,6 +36,16 @@ const LabourTable = () => {
             <h1 className='text-2xl text-center text-red-800 p-3'>LABOUR COSTING</h1>
             <div className='flex flex-col p-3'>
                 <div className='flex flex-row p-1'>
+                    <div className='basis-1/2 text-center text-black-500 text-lg uppercase'>Total employees</div>
+                    <div className='basis-1/2 text-center text-black-500 text-lg uppercase'>Task Cost</div>
+                </div>
+                <div className='flex flex-row p-1'>
+                    <div className='basis-1/2 text-center text-red-500 text-2xl'>31</div>
+                    <div className='basis-1/2 text-center text-red-500 text-2xl'>{euro.format(1622.50)}</div>
+                </div>
+            </div>
+            <div className='flex flex-col p-3'>
+                <div className='flex flex-row p-1'>
                     <div className='basis-1/3 text-center text-black-500 text-lg uppercase'>Production case output per batch</div>
                     <div className='basis-1/3 text-center text-black-500 text-lg uppercase'>portions per case</div>
                     <div className='basis-1/3 text-center text-black-500 text-lg uppercase'>production tray qty</div>
