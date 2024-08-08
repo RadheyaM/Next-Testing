@@ -3,6 +3,7 @@ import ComponentTable from "@/components/costing/overview/ComponentTable"
 import CostingTable from "@/components/costing/overview/CostingTable"
 import OverviewHeader from "@/components/costing/overview/OverviewHeader"
 import Distribution from "@/components/costing/overview/Distribution"
+import IngredientTable from "@/components/costing/overview/IngredientTable"
 
 export default async function Page({params}) {
     const customer = await getData('customers')
@@ -14,5 +15,6 @@ export default async function Page({params}) {
         <ComponentTable />
         <CostingTable />
         <Distribution />
+        <IngredientTable />
     </>)
 }
