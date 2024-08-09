@@ -3,13 +3,18 @@ import mongoose, { Schema } from 'mongoose';
 const costingSchema = new Schema(
     {
         name: String,
+        cutomerId: String,
+        customerName: String,
         description: String,
-        date: Date,
-        overview: Map,
-        ingredients: Map,
-        packaging: Map,
+        componentCount: Number,
+        overviewComponents: Array,
+        overviewSubtotals: Map,
+        componentIngs: Array,
+        componentIngQty: Array,
+        Packaging: Map,
         labour: Map,
-        Distribuition: Map,
+        Distribution: Map,
+        CAPAX: Map,
         
     },
     {
