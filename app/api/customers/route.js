@@ -1,5 +1,4 @@
 import connectMongoDB from "@/lib/mongodb";
-import Costing from "@/models/costing";
 import Customers from "@/models/customers";
 import { NextResponse } from "next/server";
 
@@ -10,4 +9,10 @@ export async function POST(request) {
     return NextResponse.json(
         {message: "Customer Created"}, {status: 201}
     )
+}
+
+export async function GET(request) {
+    await connectMongoDB();
+    const customers = await Customers.find({});
+    return NextResponse.json({customers}, {status: 200})
 }

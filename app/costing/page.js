@@ -1,25 +1,10 @@
-import getData from '@/lib/dev-data';
-import Link from 'next/link';
+import CustomerList from '@/components/customers/CustomerList';
 
-const CostingHome = async () => {
-  const file = await getData('customers');
-  const data = JSON.parse(file);
-  // console.log("your data: ")
-  // console.log(data)
+const CostingHome = () => {
+
 
   return (
-    <>
-      <h1>Costing Home</h1>
-      <ul className='center'>
-        {data.map((customer) => {
-          return (
-            <li key={customer.code}>
-              <Link href={`/costing/${customer.code}`}>{customer.name}</Link>
-            </li>
-          )
-        })}
-      </ul>
-    </>
+    <CustomerList />
   )
 }
 
