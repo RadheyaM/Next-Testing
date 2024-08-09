@@ -2,13 +2,11 @@ import Link from "next/link";
 
 const getAllCustomers = async () => {
     try {
-        const res = await fetch('http://localhost:3000/api/customers', {
-            cache: 'no-store',
-        });
+        const res = await fetch('http://localhost:3000/api/customers');
         if (!res.ok) {
             throw new Error('Failed to fetch customers!')
         };
-        return res.json()
+        return await res.json()
     } catch (error) {
         console.log("Error loading customers: ", error);
     };
@@ -17,8 +15,9 @@ const getAllCustomers = async () => {
 
 export default async function CustomerList() {
 
-    const {customers} = await getAllCustomers();
-
+    const data = await getAllCustomers();
+    const customers = data.customers
+    console.log("HERE IT IS DUMBO", customers)
     return (
         <>
             <h1>Costing Home</h1>
