@@ -6,6 +6,7 @@ const CostingHome = async () => {
   const data = JSON.parse(file);
   // console.log("your data: ")
   // console.log(data)
+
   return (
     <>
       <h1>Costing Home</h1>

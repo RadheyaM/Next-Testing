@@ -3,7 +3,7 @@ import mongoose, { Schema } from 'mongoose';
 const costingSchema = new Schema(
     {
         name: String,
-        cutomerId: String,
+        cutomerId: mongoose.Types.ObjectId,
         customerName: String,
         description: String,
         componentCount: Number,
