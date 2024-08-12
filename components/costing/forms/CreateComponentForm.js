@@ -3,6 +3,7 @@ import { useState } from "react";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 import { numLength } from "@/lib/helps";
+import CompIngTable from "./CompIngTable";
 
 const CreateComponentForm = () => {
 
@@ -99,11 +100,7 @@ const CreateComponentForm = () => {
                     {formError.error && <div className="text-red-400 text-xl">{formError.message}</div>}
                 </div>
             </form>
-            <ul>
-                {ingredients.map(ing => (
-                    <li key={ing.rmc}>{ing.rmc} | {ing.qty}</li>
-                ))}
-            </ul>
+            <CompIngTable ingredients={ingredients}/>
         </div>
         </>
     )

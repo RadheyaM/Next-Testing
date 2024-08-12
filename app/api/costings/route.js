@@ -13,5 +13,5 @@ export async function GET() {
     await connectMongoDB();
     await Costing.find();
     const costing = await Costing.find();
-    return NextResponse.json({costing});
+    return NextResponse.json({costing}, {status: 201});
 }
