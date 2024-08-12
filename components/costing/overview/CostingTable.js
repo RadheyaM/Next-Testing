@@ -21,7 +21,7 @@ const rows = [
     createData("Sales Price", 0.441, 1.7644, 7.06, 1926.77, ""),
 ]
 
-const CostingTable = (rowAlign) => {
+const CostingTable = () => {
     return (
         <TableContainer component={Paper} elevation={3} className='p-5 m-5'>
             <Table size="medium" aria-label="a dense table">
