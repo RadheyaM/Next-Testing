@@ -1,27 +1,45 @@
-import { useState } from 'react';
+
+import { euro, toPercent } from '@/lib/helps';
 import useSWR from 'swr';
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
-const CompIngTable = ({ingredients}) => {
-    // const [data, setData] = useState(null);
-    // const [isLoading, setLoading] = useState(true);
-
-    // client side fetching (also check out SWR as alternative...)
-    // useEffect(() => {
-    //     fetch('http://localhost:3000/api/costings/ingredients')
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //         setData(data)
-    //         setLoading(false)
-    //     })
-    // }, [])
+const CompIngTable = ({ingredients, name}) => {
     const { data, error } = useSWR('/api/costings/ingredients', fetcher)
-
-    console.log("dataPage:", data);
 
     if (error) return <p>Failed to Load</p>
     if (!data) return <p>loading...</p>
+    if (!ingredients) return <p>Start adding Ingredients...</p>
+
+    console.log("ingredients: ", ingredients)
+
+    let totalMixWeight = 0;
+    for (let i = 0; i < ingredients.length; i++ ) {
+        totalMixWeight = totalMixWeight + ingredients[i].qty
+    };
+
+    let filteredIngs = [];
+    let tmw = totalMixWeight;
+    for (let i = 0; i < ingredients.length; i++ ) {
+        for (let j = 0; j < data.data.length; j++) {
+            if (data.data[j].rmc === ingredients[i].rmc) {
+                const ingPercentOfMix = (ingredients[i].qty / tmw)*100
+                const totalCost = ingredients[i].qty * Number(data.data[j].euro.$numberDecimal)
+                filteredIngs = [...filteredIngs, {
+                    rmc: data.data[j].rmc,
+                    name: data.data[j].ingredient,
+                    qty: ingredients[i].qty,
+                    percentMix: ingPercentOfMix,
+                    costKg: Number(data.data[j].euro.$numberDecimal),
+                    totalCost: totalCost
+                }]
+            }
+        }
+    }
+    console.log("total weight: ", totalMixWeight)
+    console.log("Filtered Ings: ", filteredIngs)
+
+    // console.log("dataPage:", data);
 
     return (
         <table>
@@ -36,10 +54,15 @@ const CompIngTable = ({ingredients}) => {
                 </tr>
             </thead>
             <tbody>
-                {data.data.map( ing =>
+                {filteredIngs.map( ing =>
                     (
-                        <tr>
-                            <td>{ing.ingredient}</td>
+                        <tr className='text-center'>
+                            <td>{ing.rmc}</td>
+                            <td>{ing.name}</td>
+                            <td>{toPercent(ing.percentMix)}</td>
+                            <td>{ing.qty}</td>
+                            <td>{euro.format(ing.costKg)}</td>
+                            <td>{euro.format(ing.totalCost)}</td>
                         </tr>
                     )
                 )}

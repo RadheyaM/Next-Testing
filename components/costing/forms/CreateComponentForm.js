@@ -39,8 +39,8 @@ const CreateComponentForm = () => {
         setIngredients([
             ...ingredients,
             {
-                rmc: enteredRmc,
-                qty: enteredKgQty
+                rmc: Number(enteredRmc),
+                qty: Number(enteredKgQty)
             },
         ])
         setEnteredRmc(""),
@@ -100,7 +100,8 @@ const CreateComponentForm = () => {
                     {formError.error && <div className="text-red-400 text-xl">{formError.message}</div>}
                 </div>
             </form>
-            <CompIngTable ingredients={ingredients}/>
+            <h1>{enteredComponentName}</h1>
+            <CompIngTable ingredients={ingredients} />
         </div>
         </>
     )
