@@ -14,5 +14,5 @@ export async function POST(request) {
 export async function GET(request) {
     await connectMongoDB();
     const customers = await Customers.find();
-    return NextResponse.json({customers}, {status: 200})
+    return NextResponse.json(customers, {status: 200})
 }

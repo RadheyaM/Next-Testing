@@ -11,6 +11,6 @@ const ingSchema = new Schema(
     }
 )
 
-const IngCosts = mongoose.models.ingsJune2024 || mongoose.model("ingsJune2024", ingSchema);
+const IngCosts = mongoose.models.ings || mongoose.model("ings", ingSchema);
 
 export default IngCosts;

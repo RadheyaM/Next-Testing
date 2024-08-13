@@ -1,21 +1,27 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import useSWR from 'swr';
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 const CompIngTable = ({ingredients}) => {
-    const [data, setData] = useState(null);
-    const [isLoading, setLoading] = useState(true);
+    // const [data, setData] = useState(null);
+    // const [isLoading, setLoading] = useState(true);
 
     // client side fetching (also check out SWR as alternative...)
-    useEffect(() => {
-        fetch('http://localhost:3000/api/costings/ingredients')
-        .then((res) => res.json())
-        .then((data) => {
-            setData(data)
-            setLoading(false)
-        })
-    }, [])
+    // useEffect(() => {
+    //     fetch('http://localhost:3000/api/costings/ingredients')
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //         setData(data)
+    //         setLoading(false)
+    //     })
+    // }, [])
+    const { data, error } = useSWR('/api/costings/ingredients', fetcher)
 
-    if (isLoading) return <p>Loading...</p>
-    if (!data) return <p>No Ingredient Data</p>
+    console.log("dataPage:", data);
+
+    if (error) return <p>Failed to Load</p>
+    if (!data) return <p>loading...</p>
 
     return (
         <table>
@@ -30,11 +36,13 @@ const CompIngTable = ({ingredients}) => {
                 </tr>
             </thead>
             <tbody>
-                {data.ing.map((ing) => (
-                    <tr>
-                        <td>ing.ingredient</td>
-                    </tr>
-                ))}
+                {data.data.map( ing =>
+                    (
+                        <tr>
+                            <td>{ing.ingredient}</td>
+                        </tr>
+                    )
+                )}
             </tbody>
         </table>
     )
